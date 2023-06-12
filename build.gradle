@@ -12,8 +12,8 @@ version = '7.0.0'
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+/*sourceCompatibility = "1.8"
+targetCompatibility = "1.8"*/
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
@@ -43,7 +43,10 @@ task initSourceFolders {
 configurations {
     wagon
     distJars {
+        //从 Gradle 6.x 开始，configurations.runtime禁止使用参数获取程序执行的配置。
+        // 相反，可以使用configurations.runtimeClasspath来实现。因此修改runtime为 runtimeClasspath
         extendsFrom runtime
+        //extendsFrom runtimeClasspath
         exclude group: 'org.elasticsearch'
         exclude group: 'lucene-core'
         exclude group: 'org.apache.logging.log4j'
@@ -52,6 +55,11 @@ configurations {
     }
 }
 
+//Gradle 7.0 中 compile，runtime、testCompile和testRuntime
+//
+//被替换为
+//
+//implementation、runtimeOnly、testImplementation和testRuntimeOnly
 dependencies {
     compile 'com.huaban:jieba-analysis:1.0.2'
     compile 'org.elasticsearch:elasticsearch:7.0.0'
@@ -73,3 +81,5 @@ task pz(type: Zip, dependsOn: [':jar']) {
         into ('dic')
     }
 }
+
+//gradle wrapper --gradle-version 3.3
