@@ -8,7 +8,7 @@
  */
 
 group 'org.elasticsearch'
-version = '7.0.0'
+version = '6.8.13.1'
 apply plugin: 'java'
 apply plugin: 'idea'
 
@@ -62,7 +62,7 @@ configurations {
 //implementation、runtimeOnly、testImplementation和testRuntimeOnly
 dependencies {
     compile 'com.huaban:jieba-analysis:1.0.2'
-    compile 'org.elasticsearch:elasticsearch:7.0.0'
+    compile 'org.elasticsearch:elasticsearch:6.8.13'
     compile 'org.apache.logging.log4j:log4j-api:2.7'
     compile 'org.apache.logging.log4j:log4j-core:2.7'
     testCompile 'junit:junit:4.12'
